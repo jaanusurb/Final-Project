@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <table class="table">
+        <tr>
+            <th>PK</th>
+            <th>user_name</th>
+            <th>created_time</th>
+        </tr>
+        {% for shopping_cart in shopping_carts %}
+            <tr>
+                <td>{{ shopping_cart.pk }}</td>
+                <td>{{ shopping_cart.user_name }}</td>
+                <td>{{ shopping_cart.created_time }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    Here is the content of your shopping cart:
+    <table class="table">
+        <tr>
+            <th>PK</th>
+            <th>shopping_cart</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price/pcs</th>
+            <th>Price total</th>
+
+        </tr>
+        {% for shopping_cart_item in shopping_cart_items %}
+            <tr>
+                <td>{{ shopping_cart_item.pk }}</td>
+                <td>{{ shopping_cart_item.shopping_cart }}</td>
+                <td>{{ shopping_cart_item.product }}</td>
+                <td>{{ shopping_cart_item.product_quantity }}</td>
+                <td>{{ shopping_cart_item.product_price }}</td>
+                <td>{{ shopping_cart_item.calc_total }}</td>
+            </tr><br/>
+        {% endfor %}
+
+
+    </table>
+
+    <a>Check Out</a>
+
+{% endblock %}
