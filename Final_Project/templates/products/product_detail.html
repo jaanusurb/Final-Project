@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <p>PK: {{ product.pk }}</p>
+    <p>Name: {{ product.name }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Category: {{ product.category.name }}</p><br/>
+
+
+    <img src="{{ product.image.url }}" width="200"> <br/>
+
+    <a href="{% url 'product_update' product.pk %}">Update product</a>
+    <a href="{% url 'product_delete' product.pk %}">Delete product</a>
+{% endblock %}
+
+

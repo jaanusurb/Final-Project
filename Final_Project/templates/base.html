@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous"/>
+ <title>{% block title %} Final-Project {% endblock %}</title>
+</head>
+
+<body>
+{% load static %}
+   <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+
+      </button>
+      <div  id="navbar">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" id="home" href="/products/list">Products</a>
+          <a class="nav-item nav-link" id="projects" href="/Cart/list/">Shopping Cart</a>
+          <a class="nav-item nav-link" id="category_list" href="/products/category_list/">Category</a>
+          <a class="nav-item nav-link" id="login" href="/accounts/login/">Login</a>
+          <a class="nav-item nav-link" id="logout" href="/accounts/logout/">Logout: {{user.username}}</a>
+
+        </div>
+      </div>
+   </nav>
+
+   <div id="welcome">
+     You are logged in as: {{user.username}}
+   </div>
+
+   <div id="content">
+     {% block content %}
+     {% endblock %}
+   </div>
+
+</body>
+
+</html>
+
+
