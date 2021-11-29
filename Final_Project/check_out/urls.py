@@ -19,7 +19,7 @@ from . import views
 
 urlpatterns = [
 
- path('detail/<int:pk>', views.Check_outDetailView.as_view(), name='product_detail'),
+ path('list/', views.Check_outListView.as_view(), name='check_out_list'),
 
 
 ]

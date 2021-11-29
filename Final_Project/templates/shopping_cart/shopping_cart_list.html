@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<th><img src=" /media/check_out1.jfif " width="150"> <br/></th>
 
+    <p><b> SHOPPING CART PAGE </b></p><br/>
+    <p>Here are the details of your shopping cart:</p><br/>
     <table class="table">
         <tr>
             <th>PK</th>
@@ -41,6 +44,5 @@
 
     </table>
 
-    <a>Check Out</a>
-
+    <a class="btn btn-primary" href="{% url 'check_out_list' %}" role="button">Check Out</a>
 {% endblock %}

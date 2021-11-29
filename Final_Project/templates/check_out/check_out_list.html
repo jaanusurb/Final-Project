@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<th><img src=" /media/check_out.png " width="150"> <br/></th>
+    <p><b> CHECK OUT PAGE </b></p><br/>
+    <table class="table">
+        <tr>
+            <th>PK</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Total Cost</th>
+            <th>Deliveri Address</th>
+            <th>User Address</th>
+            <th>Order Items</th>
+            <th>Client</th>
+            <th>Status</th>
+
+        </tr>
+        {% for check_out in check_outs %}
+
+            <tr>
+                <td>{{ Check_out.pk }}</td>
+                <td>{{ Check_out.user_name }}</td>
+                <td>{{ Check_out.Date_of_submission }}</td>
+                <td>{{ Check_out.total_cost }}</td>
+                <td>{{ Check_out.delivery_address }}</td>
+                <td>{{ Check_out.user_address }}</td>
+                <td>{{ Check_out.order_items }}</td>
+                <td>{{ Check_out.client }}</td>
+                <td>{{ Check_out.status }}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

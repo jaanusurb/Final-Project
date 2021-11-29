@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<th><img src=" /media/box.jfif " width="200"> <br/></th>
+<p><b>PRODUCT LIST PAGE</b></p><br/>
     <table class="table">
         <tr>
             <th>PK</th>
@@ -8,6 +10,7 @@
             <th>Price</th>
             <th>Category</th>
             <th>Image</th>
+            <th>Add to Cart</th>
         </tr>
         {% for product in products %}
 
@@ -17,8 +20,10 @@
                 <td>{{ product.price }}</td>
                 <td>{{ product.category.name }}</td>
                 <th><img src=" /media/{{ product.image }} " width="50"> <br/></th>
+                <th><a class="btn btn-primary" href="{% url 'shopping_cart_list' %}" role="button">Add to cart</a><br/></th>
             </tr>
         {% endfor %}
     </table>
-    <a href="{% url 'product_create' %}">Add product</a>
+
+    <a class="btn btn-primary" href="{% url 'product_create' %}" role="button">Add product </a>
 {% endblock %}
