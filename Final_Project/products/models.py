@@ -10,7 +10,7 @@ class Product(models.Model):
     product_type = models.CharField(max_length=50)
     thumbnail = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
-    image = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='products', null=True, blank=True)
     availability = models.CharField(max_length=50)
 
     def __str__(self):
