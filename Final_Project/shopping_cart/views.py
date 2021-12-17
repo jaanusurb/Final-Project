@@ -28,3 +28,7 @@ class Shopping_cart_itemAddView(CreateView):
     template_name = 'shopping_cart/shopping_cart_item_create.html'
     fields = '__all__'
     success_url = reverse_lazy('shopping_cart_list')
+
+
+
+

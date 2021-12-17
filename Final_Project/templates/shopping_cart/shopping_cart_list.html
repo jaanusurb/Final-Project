@@ -4,6 +4,7 @@
 <th><img src=" /media/check_out1.jfif " width="150"> <br/></th>
 
     <p><b> SHOPPING CART PAGE </b></p><br/>
+    {% if user.is_authenticated %}
     <p>Here are the details of your shopping cart:</p><br/>
     <table class="table">
         <tr>
@@ -12,6 +13,7 @@
             <th>created_time</th>
         </tr>
         {% for shopping_cart in shopping_carts %}
+
             <tr>
                 <td>{{ shopping_cart.pk }}</td>
                 <td>{{ shopping_cart.user_name }}</td>
@@ -46,4 +48,11 @@
     </table>
 
     <a class="btn btn-primary" href="{% url 'check_out_list' %}" role="button">Check Out</a>
+
+    {% else %}
+    you need to be logged in to see the content <br/>
+    <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login </a>
+
+    {% endif %}
+
 {% endblock %}
