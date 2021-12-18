@@ -4,6 +4,7 @@
 <th><img src=" /media/check_out1.jfif " width="150"> <br/></th>
 
     <p><b> SHOPPING CART PAGE </b></p><br/>
+    user.pk: {{user.pk}}
     {% if user.is_authenticated %}
     <p>Here are the details of your shopping cart:</p><br/>
     <table class="table">
@@ -13,12 +14,13 @@
             <th>created_time</th>
         </tr>
         {% for shopping_cart in shopping_carts %}
-
+            {% if shopping_cart.id == user.pk %}
             <tr>
                 <td>{{ shopping_cart.pk }}</td>
                 <td>{{ shopping_cart.user_name }}</td>
                 <td>{{ shopping_cart.created_time }}</td>
             </tr>
+            {% endif %}
         {% endfor %}
     </table>
     Here is the content of your shopping cart:
@@ -33,6 +35,7 @@
 
         </tr>
         {% for shopping_cart_item in shopping_cart_items %}
+            {% if shopping_cart_item.shopping_cart_id == user.pk %}
             <tr>
                 <td>{{ shopping_cart_item.pk }}</td>
                 <td>{{ shopping_cart_item.shopping_cart }}</td>
@@ -42,8 +45,8 @@
                 <td>{{ shopping_cart_item.calc_total }}</td>
                 <th><a class="btn btn-danger" href="{% url 'shopping_cart_itemDelete' shopping_cart_item.pk %}" role="button">Remove!</a><br/></th>
             </tr><br/>
+            {% endif %}
         {% endfor %}
-
 
     </table>
 
