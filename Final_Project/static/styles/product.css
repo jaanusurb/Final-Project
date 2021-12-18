@@ -5,10 +5,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .product {
   border-radius: 5px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
-.product:hover {opacity: 0.7;}
+.product:hover {opacity: 0.5;}
 
 /* The Modal (background) */
 .modal {
