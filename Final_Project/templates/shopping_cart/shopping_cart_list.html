@@ -45,8 +45,8 @@
                 <td>{{ shopping_cart_item.product_quantity }}</td>
                 <td>{{ shopping_cart_item.product_price }}</td>
                 <td>{{ shopping_cart_item.calc_total }}</td>
-                <th><a class="btn btn-danger" href="{% url 'shopping_cart_itemDelete' shopping_cart_item.pk %}" role="button">Remove!</a><br/></th>
-            </tr><br/>
+                <th><a class="btn btn-danger" href="{% url 'shopping_cart_itemDelete' shopping_cart_item.pk %}" role="button"><img src=" /media/delete.png " width="15"></a><br/></th>
+            </tr>
             {% endif %}
         {% endfor %}
 
