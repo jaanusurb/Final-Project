@@ -1,60 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block script %}
+<script src="/static/js/popup1.js"></script>
+{% endblock %}
 
 {% block content %}
 
+
 <body>
 
-<!-- Trigger the Modal -->
-<img id="myImg" src="{{ product.image.url }}" alt="Snow" style="width:100%;max-width:200px">
+    <th><img src=" /media/glass.jfif " width="150"> <br/></th>
+    <p><b> PRODUCT DETAIL PAGE </b> </p> <br/>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="img01">
-  <div id="caption"></div>
-</div>
+        <p>PK: {{ product.pk }}</p>
+        <p>Name: {{ product.name }}</p>
+        <p>Price: {{ product.price }}</p>
+        <p>Category: {{ product.category.name }}</p><br/>
 
+        <img src="{{ product.image.url }}" style="width:100%;max-width:200px" class="product"> <br/>
 
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
+        <a class="btn btn-primary" href="{% url 'product_update' product.pk %}" role="button">Update product </a>
+        <a class="btn btn-danger" href="{% url 'product_delete' product.pk %}" role="button">Delete product </a>
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-</script>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01">
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+    </div>
 
 </body>
 
-<th><img src=" /media/glass.jfif " width="150"> <br/></th>
-<p><b> PRODUCT DETAIL PAGE </b> </p> <br/>
-
-    <p>PK: {{ product.pk }}</p>
-    <p>Name: {{ product.name }}</p>
-    <p>Price: {{ product.price }}</p>
-    <p>Category: {{ product.category.name }}</p><br/>
-
-
-    <img src="{{ product.image.url }}" width="200"> <br/>
-    <img id="myImg" src="{{ product.image.url }}" style="width:100%;max-width:200px"> <br/>
-
-
-    <a class="btn btn-primary" href="{% url 'product_update' product.pk %}" role="button">Update product </a>
-    <a class="btn btn-danger" href="{% url 'product_delete' product.pk %}" role="button">Delete product </a>
 {% endblock %}
 
 
