@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+# 123456
 
 def home(request):
     request.session['name'] = 'User'
