@@ -7,7 +7,7 @@ def register(request):
     form = UserCreationForm(request.POST or None)
     if form.is_valid():
         user_obj = form.save()
-        return redirect('accounts/login')
+        return redirect('/accounts/login/')
     context = {"form": form}
     return render(request, "accounts/register.html", context)
 
