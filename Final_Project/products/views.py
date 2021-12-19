@@ -2,11 +2,26 @@ from django.shortcuts import render
 from .models import Product
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView
 from django.urls import reverse_lazy
+from django.http import JsonResponse
+import json
 
 class ProductListView(ListView):
     model = Product
     template_name = 'products/product_list.html'
     context_object_name = 'products'
+
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    productId = data['action']
+    user = request.user
+    product = Product.objects.get(id=productId)
+    # create an order
+    # create cart in session
+    cartItems = request.session.get('cartItems', 0)
+    request.session['cartItems'] = cartItems + 1
+
+    return JsonResponse({'message': 'Item was added'})
 
 class ProductCreateView(CreateView):
     model = Product

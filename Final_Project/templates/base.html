@@ -13,6 +13,26 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="/static/styles/product.css"/>
+    <script type="text/javascript">
+        var user = '{{ request.user }}';
+        function getToken(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getToken('csrftoken');
+    </script>
+
 {% endblock %}
 
 
@@ -50,6 +70,14 @@
           </li>
         </ul>
 
+<!--        <div class="col-sm-9">
+            <div id="cart" style="float:right">Items in Cart :<span id="cart_items">{{request.session.cartItems}}</span></div>
+            <hr>
+            {% block content1 %}{% endblock %}
+        </div>-->
+
+
+
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item" >
@@ -82,6 +110,8 @@
         - - - This is Final-Project online shopping store - - -
        <br/>
    </div>
+
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 {% block script %}{% endblock %}
 
