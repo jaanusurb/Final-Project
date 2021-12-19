@@ -1,13 +1,14 @@
 from django.db import models
 from products.models import Product
 import datetime
+from django.contrib.auth.models import User
 
 class Shopping_cart(models.Model):
-    user_name = models.CharField(max_length=50)
-    created_time = models.CharField(max_length=500)
+    user_name = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    created_time = models.DateTimeField(default=datetime.datetime.now())
 
     def __str__(self):
-        return self.user_name
+        return str(self.user_name)
 
 class Shopping_cart_item(models.Model):
     shopping_cart = models.ForeignKey(Shopping_cart, on_delete=models.DO_NOTHING)
@@ -21,3 +22,5 @@ class Shopping_cart_item(models.Model):
         amount = (self.product_price * self.product_quantity)
         return amount
 
+    def __str__(self):
+        return self.shopping_cart_id

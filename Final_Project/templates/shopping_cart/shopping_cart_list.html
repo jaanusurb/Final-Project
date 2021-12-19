@@ -14,20 +14,22 @@
             <th>created_time</th>
         </tr>
         {% for shopping_cart in shopping_carts %}
-            {% if shopping_cart.id == user.pk %}
+            {% if shopping_cart.user_name_id == user.pk %}
             <tr>
                 <td>{{ shopping_cart.pk }}</td>
-                <td>{{ shopping_cart.user_name }}</td>
+                <td>{{ shopping_cart.user_name_id }}</td>
                 <td>{{ shopping_cart.created_time }}</td>
             </tr>
             {% endif %}
         {% endfor %}
     </table>
-    Here is the content of your shopping cart:
+
+    Here is the content of your shopping cart {{ shopping_cart.pk }}:
     <table class="table">
         <tr>
             <th>PK</th>
             <th>shopping_cart</th>
+            <th>shopping_cart_id</th>
             <th>added</th>
             <th>Product</th>
             <th>Quantity</th>
@@ -40,6 +42,7 @@
             <tr>
                 <td>{{ shopping_cart_item.pk }}</td>
                 <td>{{ shopping_cart_item.shopping_cart }}</td>
+                <td>{{ shopping_cart_item.shopping_cart_id }}</td>
                 <td>{{ shopping_cart_item.added_time }}</td>
                 <td>{{ shopping_cart_item.product }}</td>
                 <td>{{ shopping_cart_item.product_quantity }}</td>

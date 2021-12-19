@@ -6,6 +6,12 @@ from products.models import Product
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView
 from django.urls import reverse_lazy
 
+class Shopping_cart_AddView(CreateView):
+    queryset = Shopping_cart.objects
+    template_name = 'shopping_cart/shopping_cart_create.html'
+    fields = '__all__'
+    success_url = reverse_lazy('shopping_cart_list')
+
 class Shopping_cartListView(ListView):
     queryset = Shopping_cart_item.objects, Shopping_cart.objects
     template_name = 'shopping_cart/shopping_cart_list.html'
