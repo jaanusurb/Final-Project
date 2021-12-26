@@ -24,4 +24,12 @@ urlpatterns = [
  path('update/<int:pk>', views.ProductUpdateView.as_view(), name='product_update'),
  path('delete/<int:pk>', views.ProductDeleteView.as_view(), name='product_delete'),
  path('update_item/', views.updateItem, name="update_item"),
+ path('', views.ShowAllProducts, name='showProducts'),
+ path('product/<int:pk>/', views.productDetail, name='product'),
+ path('addProduct/', views.addProduct, name='addProduct'),
+ path('updateProduct/<int:pk>/', views.updateProduct, name='updateProduct'),
+ path('deleteProduct/<int:pk>/', views.deleteProduct, name='deleteProduct'),
+ path('search/', views.searchBar, name='search'),
+ path('product/<int:pk>/add-comment', views.add_comment, name='add-comment'),
+ path('product/<int:pk>/delete-comment', views.delete_comment, name='delete-comment'),
 ]

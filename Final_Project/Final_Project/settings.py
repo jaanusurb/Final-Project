@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'products',
+    'products.apps.ProductsConfig',
     'shopping_cart',
     'check_out',
+
+    # 'send_email.apps.SendEmailConfig',
+    # 'pdf_convert.apps.PdfConvertConfig',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +87,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'django_product_db',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
@@ -140,3 +154,11 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kjimputo@gmail.com'
+EMAIL_USER_PASSWORD = 'your gmail pass'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

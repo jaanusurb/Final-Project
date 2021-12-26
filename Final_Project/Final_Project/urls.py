@@ -26,6 +26,8 @@ urlpatterns = [
     path('shopping_cart/', include('shopping_cart.urls')),
     path('check_out/', include('check_out.urls')),
     path('accounts/', include('accounts.urls')),
+    # path('pdf/', include('pdf_convert.urls')),
+    # path('emailsender/', include('send_email.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
