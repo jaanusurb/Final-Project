@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% block script %}
+<script src="/static/js/popup1.js"></script>
+{% endblock %}
 
 {% block content %}
 
@@ -15,7 +18,7 @@
 
                 <div class="col-md-3">
                     <div class="card m-3 p-3" style="width: 18rem; height: 33rem; box-shadow: 4px 4px #c291fa; border-radius: 25px 15px;">
-                        <img src="{{ product.image.url }}" style="height: 300px; width: 200px;"  class="card-img-top" alt="...">
+                        <img src="{{ product.image.url }}" style="height: 300px; width: 200px;"  class="card-img-top product" alt="...">
                         <div class="card-body">
                             <h4 style="font-size: 17px;" class="card-title mt-1">{{ product.name }}</h4>
                             <h3 style="color: rgb(16, 52, 107)" class="card-subtitle mt-1">{{ product.price }} €</h3>
@@ -100,12 +103,16 @@
   
           </div>
         </div>
+    </div>
 
-
-       
-     
-
-
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01">
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
     </div>
 
 {% endblock %}
