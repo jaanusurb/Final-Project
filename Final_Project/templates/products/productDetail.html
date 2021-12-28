@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% block script %}
+<script src="/static/js/popup1.js"></script>
+{% endblock %}
 
 {% block content %}
   
@@ -10,7 +13,7 @@
       <div class="col-md-8">
         <a href="{% url 'showProducts' %}" class="btn btn-primary mt-2">Back</a>
           <div class="card m-5 p-2" style="width: 25rem;">
-              <img src="{{ eachProduct.image.url }}" class="card-img-top" alt="...">
+              <img src="{{ eachProduct.image.url }}" class="card-img-top product" alt="...">
               <div class="card-body">
                   <h5 class="card-title m-1"><b>Name:</b> {{ eachProduct.name }}</h5>
                   <h4 class="card-subtitle m-1"><b>Price:</b> ${{ eachProduct.price }}</h4>

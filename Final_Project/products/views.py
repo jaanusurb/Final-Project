@@ -27,7 +27,7 @@ def ShowAllProducts(request):
     if category == None:
         products = Product.objects.order_by('-price').filter(is_published=True)
         page_num = request.GET.get("page")
-        paginator = Paginator(products, 2)
+        paginator = Paginator(products, 8)
         try:
             products = paginator.page(page_num)
         except PageNotAnInteger:
@@ -141,7 +141,7 @@ class ProductDeleteView(DeleteView):
 def deleteProduct(request, pk):
     product = Product.objects.get(id=pk)
     product.delete()
-    return redirect('products/showProducts')
+    return redirect('showProducts')
 
 
 @login_required(login_url='showProducts')
@@ -168,7 +168,7 @@ def add_comment(request, pk):
             body = form.cleaned_data['comment_body']
             c = Comment(product=eachProduct, commenter_name=name, comment_body=body, date_added=datetime.now())
             c.save()
-            return redirect('products/showProducts')
+            return redirect('showProducts')
         else:
             print('form is invalid')
     else:
