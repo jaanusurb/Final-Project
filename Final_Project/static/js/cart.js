@@ -53,10 +53,20 @@ $( document ).ready(function() {
         }
         return count;
     }
+
+    function cartTotal(obj) {
+        var count = 0;
+        for ( var key in obj){
+            count += obj[key].total
+        }
+        return count;
+    }
+
     //javascript
     // document.getElementById("cart-items").innerHTML = cartLength(JSON.parse(localStorage.getItem('cart')));
     // jquery
     $('#cart-items').html(cartLength(JSON.parse(localStorage.getItem('cart'))));
+    $('#cart-total').html(cartTotal(JSON.parse(localStorage.getItem('cart'))));
     // jquery
     $('.add-to-cart').click(function(){
 		console.log(this.dataset.pk);
@@ -65,14 +75,19 @@ $( document ).ready(function() {
         if(cart[idstr]!= undefined) {
 
 			quantity = cart[idstr].quantity
+			price = cart[idstr].price
             cart[idstr].quantity =  quantity + 1;
+            total =  cart[idstr].quantity * parseFloat(price);
+            cart[idstr].total =  parseFloat(total);
         }
         else {
 			// cart being inititlzied
-            cart[idstr] = {quantity: 1, pk: this.dataset.pk, name: this.dataset.name,price: this.dataset.price,category: this.dataset.category,image:this.dataset.image };
+            cart[idstr] = {quantity: 1, pk: this.dataset.pk, name: this.dataset.name,price: this.dataset.price,category: this.dataset.category,image:this.dataset.image, total:parseFloat(this.dataset.price)};
         }
+
         console.log(cart)
         localStorage.setItem('cart', JSON.stringify(cart));
         $('#cart-items').html(cartLength(cart));
+        $('#cart-total').html(cartTotal(cart));
     });
 });
