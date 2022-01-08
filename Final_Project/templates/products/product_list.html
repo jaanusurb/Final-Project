@@ -27,7 +27,14 @@
                 <td>{{ product.price }}</td>
                 <td>{{ product.category.name }}</td>
                 <td><img src=" /media/{{ product.image }} " width="50" class="product"> <br/></td>
-                <td><button data-product="{{ product.pk }}" data-action="add" class="btn btn-outline-secondary add-to-cart">Add to cart</button></td>
+                <td><button data-pk="{{ product.pk }}"
+                            data-price="{{ product.price }}"
+                            data-name="{{ product.name }}"
+                            data-image="/media/{{product.image}}"
+                            data-category="{{ product.category.name }}"
+                            class="btn btn-outline-secondary add-to-cart">Add to cart
+                </button></td>
+
                 <td><button class="btn btn-outline-primary add_to_cart" href="{% url 'shopping_cart:shopping_cart_itemAdd' %}" role="button">Add to cart</button></td>
                 <th><a class="btn btn-primary" href="{% url 'shopping_cart:shopping_cart_itemAdd' %}" role="button">Add to cart</a><br/></th>
             </tr>

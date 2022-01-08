@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block script %}
-<script src="/static/js/popup1.js"></script>
-{% endblock %}
-
 {% block content %}
 
 
@@ -31,10 +27,47 @@
         <img class="modal-content" id="img01">
         <!-- Modal Caption (Image Text) -->
         <div id="caption"></div>
-    </div>
+    </div><br/>
+    <br/>
+    <p><b> OTHER PRODUCTS IN YOUR CURRENT CART </b> </p> <br/>
+
+    <table class="table" id="display-cart">
+
+    </table>
 
 </body>
 
 {% endblock %}
 
+{% block script %}
+<script src="/static/js/popup1.js"></script>
 
+<script>
+$( document ).ready(function() {
+	console.log(cart);
+	var html = ""
+	    html += "<tr>";
+        html += "<th>PK</th>";
+        html += "<th>Image</th>";
+        html += "<th>Name</th>";
+        html += "<th>Price</th>";
+        html += "<th>Category</th>";
+        html += "<th>Quantity</th>";
+        html += "</tr>";
+	for (product in cart ) {
+	    html += "<tr>";
+		html += "<td>"+ cart[product].pk+"</td>";
+		html += "<td><img src="+ cart[product].image+" width=50 height=50 class='product'  alt='My image'></td>"
+		html += "<td>"+ cart[product].name+"</td>";
+		html += "<td>"+ cart[product].price+"</td>";
+		html += "<td>"+ cart[product].category+"</td>";
+		html += "<td>"+ cart[product].quantity+"</td>";
+		html += "<br/>";
+		html += "</tr>";
+	}
+    console.log(html);
+	$('#display-cart').html(html)
+
+});
+</script>
+{% endblock %}

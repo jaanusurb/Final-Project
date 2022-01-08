@@ -27,8 +27,15 @@
                             <p style="font-size: 13px;" class="cart-text mt-1">{{ product.created_at }}</p>                
                         </div>
                         <span>
-                            <a href="{% url 'shopping_cart:add_to_cart' product.pk %}" style="background-color: #5707b3;" class="btn btn-primary m-1">Add to Cart</a>
+                            <td><button data-pk="{{ product.pk }}"
+                                data-price="{{ product.price }}"
+                                data-name="{{ product.name }}"
+                                data-image="/media/{{product.image}}"
+                                data-category="{{ product.category.name }}"
+                                class="btn btn-outline-success add-to-cart">Add to cart
+                            </button></td>
                             <a href="{% url 'product' product.pk  %}" style="background-color: #5707b3;" class="btn btn-primary m-1">Detail</a>
+
                         </span>
 
                     </div>
