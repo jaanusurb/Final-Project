@@ -15,7 +15,7 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="/static/styles/product.css"/>
-    <script type="text/javascript">
+    <script type="text/javascript">@
         var user = '{{ request.user }}';
         function getToken(name) {
             var cookieValue = null;
@@ -42,7 +42,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
              <li class="nav-item">
                 <a class="navbar-brand" href="/products/list/"><img src=" /media/cart.png " width="35"></a>
@@ -51,12 +51,12 @@
                 <a class="navbar-brand" href="{% url 'showProducts' %}">Home</a>
                 </li>
 
-<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--      </button>-->
-         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+<!--         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button>-->
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -67,7 +67,7 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'showProducts' %}">Show Products</a>
               </li>
           <li class="nav-item">
-            <a class="nav-link" id="projects" href="/shopping_cart/cart_add">Add Cart</a>
+            <a class="nav-link" id="projects" href="{% url 'shopping_cart:order_summary' %}">View Cart</a>
           </li>
 <!--          <li class="nav-item">-->
 <!--            <a class="nav-link" id="category_list" href="/products/category_list/">Category</a>-->
@@ -149,6 +149,7 @@
 
 <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.bundle.js' %}"></script>
 
 {% block script %}{% endblock %}
 

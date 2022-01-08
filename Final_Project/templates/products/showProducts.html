@@ -26,7 +26,11 @@
                             <p style="font-size: 13px;" class="btn btn-warning"><b>{{ product.category.name }}</b></p>
                             <p style="font-size: 13px;" class="cart-text mt-1">{{ product.created_at }}</p>                
                         </div>
-                        <span><a href="{% url 'product' product.pk  %}" style="background-color: #5707b3;" class="btn btn-primary m-1">Detail</a></span>
+                        <span>
+                            <a href="{% url 'shopping_cart:add_to_cart' product.pk %}" style="background-color: #5707b3;" class="btn btn-primary m-1">Add to Cart</a>
+                            <a href="{% url 'product' product.pk  %}" style="background-color: #5707b3;" class="btn btn-primary m-1">Detail</a>
+                        </span>
+
                     </div>
                 </div>
 

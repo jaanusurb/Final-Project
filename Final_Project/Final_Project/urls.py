@@ -18,6 +18,9 @@ from django.urls import path, include
 from .views import home
 from django.conf import settings
 from django.conf.urls.static import static
+# From Just Django example
+from django.conf.urls import url
+from accounts.views import my_profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +29,7 @@ urlpatterns = [
     path('shopping_cart/', include('shopping_cart.urls')),
     path('check_out/', include('check_out.urls')),
     path('accounts/', include('accounts.urls')),
+    url(r'^profile/$', my_profile, name='my_profile')
     # path('pdf/', include('pdf_convert.urls')),
     # path('emailsender/', include('send_email.urls')),
 ]
