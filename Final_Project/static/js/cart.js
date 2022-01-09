@@ -1,57 +1,59 @@
-//var updateBtns = document.getElementsByClassName('add-to-cart')
-//
-//for (i = 0; i < updateBtns.length; i++) {
-//    updateBtns[i].addEventListener('click', function(){
-//
-//        var productId = this.dataset.product
-//        var action = this.dataset.action
-//        console.log('USER:', user)
-//
-//        if (user == 'AnonymousUser'){
-//            addCookieItem(productId, action)
-//        }else{
-//            updateUserOrder(productId, action)
-//        }
-//    })
-//}
-//
-//function updateUserOrder(productId, action){
-//    console.log("User is authenticated...sending data")
-//    var url = '/update_item/'
-//    fetch(url,{
-//        method:'POST',
-//        headers:{
-//            'Content-Type':'application/json',
-//            'X-CSRFToken':csrftoken,
-//        },
-//        body:JSON.stringify({'productId':productId,'action':action})
-//    })
-//    .then((data)=>{
-//        location.reload()
-//    });
-//}
-//
-//function addCookieItem(productId, action){
-//    console.log("User is not authenticated")
-//}
-
-console.log('working')
-if(localStorage.getItem('cart') == null)
-{
-	var cart={};
-}
-else{
-	cart= JSON.parse(localStorage.getItem('cart'));
-}
-
 $( document ).ready(function() {
 
-    function cartLength(obj) {
-        var count = 0;
-        for ( var key in obj){
-            count += obj[key].quantity
+	var html = ""
+	    html += "<tr>";
+        html += "<th>PK</th>";
+        html += "<th>Image</th>";
+        html += "<th>Name</th>";
+        html += "<th>Price</th>";
+        html += "<th>Category</th>";
+        html += "<th>Quantity</th>";
+        html += "<th>Total</th>";
+        html += "<th>Delete</th>";
+        html += "</tr>";
+	for (product in cart ) {
+	    html += "<tr>";
+		html += "<td>"+ cart[product].pk+"</td>";
+		html += "<td><img src="+ cart[product].image+" width=50 height=50 class='product'  alt='My image'></td>"
+		html += "<td>"+ cart[product].name+"</td>";
+		html += "<td>"+ cart[product].price+"</td>";
+		html += "<td>"+ cart[product].category+"</td>";
+		html += "<td>"+ cart[product].quantity+"</td>";
+		html += "<td><span id='total-amount'> "+productTotal(product)+"</span></td>";
+        html += "<td><button class='btn remove-from-cart' data-id='"+product+"'><i class='fa fa-trash'></i></button></td>"
+		html += "<br/>";
+		html += "</tr>";
+	}
+    html += "<tr><td colspan='5'></td><td> <b>Grand Total:</b> <span id='total-amount'> "+calculate_total()+"</span></td></tr>"
+
+
+	$('#display-cart').html(html)
+
+    $('.remove-from-cart').click(function(){
+        if(cart[this.dataset.id].quantity === 1){
+            delete cart[this.dataset.id]
+        }else{
+            cart[this.dataset.id].quantity = cart[this.dataset.id].quantity - 1
         }
-        return count;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        // reloads the page from cache, faster but not up to date
+        // location.reload();
+        // reloads the page from server, slower but always uptp date
+        location.reload(true);
+    });
+
+    function calculate_total(){
+        var sum = 0;
+        for (item in cart){
+            sum += cart[item].quantity * cart[item].price
+        }
+        return sum;
+    }
+
+    function productTotal(item){
+        var sum = 0;
+            sum += cart[item].quantity * cart[item].price
+        return sum;
     }
 
     function cartTotal(obj) {
@@ -62,32 +64,6 @@ $( document ).ready(function() {
         return count;
     }
 
-    //javascript
-    // document.getElementById("cart-items").innerHTML = cartLength(JSON.parse(localStorage.getItem('cart')));
-    // jquery
-    $('#cart-items').html(cartLength(JSON.parse(localStorage.getItem('cart'))));
     $('#cart-total').html(cartTotal(JSON.parse(localStorage.getItem('cart'))));
-    // jquery
-    $('.add-to-cart').click(function(){
-		console.log(this.dataset.pk);
-        var idstr= this.dataset.pk.toString();
-		// the cart attributes(quantity) is being updated
-        if(cart[idstr]!= undefined) {
 
-			quantity = cart[idstr].quantity
-			price = cart[idstr].price
-            cart[idstr].quantity =  quantity + 1;
-            total =  cart[idstr].quantity * parseFloat(price);
-            cart[idstr].total =  parseFloat(total);
-        }
-        else {
-			// cart being inititlzied
-            cart[idstr] = {quantity: 1, pk: this.dataset.pk, name: this.dataset.name,price: this.dataset.price,category: this.dataset.category,image:this.dataset.image, total:parseFloat(this.dataset.price)};
-        }
-
-        console.log(cart)
-        localStorage.setItem('cart', JSON.stringify(cart));
-        $('#cart-items').html(cartLength(cart));
-        $('#cart-total').html(cartTotal(cart));
-    });
 });
