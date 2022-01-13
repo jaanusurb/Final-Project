@@ -23,7 +23,7 @@ $( document ).ready(function() {
     function productTotal(item){
         var sum = 0;
             sum += cart[item].quantity * cart[item].price
-        return sum;
+        return parseFloat(sum).toFixed(2);
     }
 
     function calculate_total(){
@@ -31,7 +31,7 @@ $( document ).ready(function() {
         for (item in cart){
             sum += cart[item].quantity * cart[item].price
         }
-        return sum;
+        return parseFloat(sum).toFixed(2);
     }
 
     $('#cart-total').html(calculate_total(JSON.parse(localStorage.getItem('cart'))));

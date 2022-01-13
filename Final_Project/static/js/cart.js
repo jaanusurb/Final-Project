@@ -2,30 +2,32 @@ $( document ).ready(function() {
 
 	var html = ""
 	    html += "<tr>";
-        html += "<th>PK</th>";
-        html += "<th>Image</th>";
-        html += "<th>Name</th>";
-        html += "<th>Price</th>";
-        html += "<th>Category</th>";
-        html += "<th>Quantity</th>";
-        html += "<th>Total</th>";
-        html += "<th>Delete</th>";
+        html += "<th style='width: 10%' >PK</th>";
+        html += "<th style='width: 10%' >Image</th>";
+        html += "<th style='width: 20%' >Name</th>";
+        html += "<th style='width: 10%; text-align: center' >Quantity</th>";
+        html += "<th style='text-align: right; padding-right: 20px; width: 10%'>Price €</th>";
+        html += "<th style='width: 10%; text-align: center' >Category</th>";
+        html += "<th style='text-align: right; padding-right: 20px'; width: 5%>Total €</th>";
+        html += "<th style='width: 20%' >Delete</th>";
         html += "</tr>";
 	for (product in cart ) {
 	    html += "<tr>";
-		html += "<td>"+ cart[product].pk+"</td>";
-		html += "<td><img src="+ cart[product].image+" width=50 height=50 class='product'  alt='My image'></td>"
-		html += "<td>"+ cart[product].name+"</td>";
-		html += "<td>"+ cart[product].price+"</td>";
-		html += "<td>"+ cart[product].category+"</td>";
-		html += "<td>"+ cart[product].quantity+"</td>";
-		html += "<td><span id='total-amount'> "+productTotal(product)+"</span></td>";
-        html += "<td><button class='btn remove-from-cart' data-id='"+product+"'><i class='fa fa-trash'></i></button></td>"
+		html += "<td style='width: 10%; vertical-align: middle' >"+ cart[product].pk+"</td>";
+		html += "<td style='width: 10%; vertical-align: middle; padding: 1px' ><img src="+ cart[product].image+" height=50 style='padding: 1px' class='product'  alt='My image'></td>"
+		html += "<td style='width: 20%; vertical-align: middle' >"+ cart[product].name+"</td>";
+		html += "<td style='width: 10%; text-align: center; vertical-align: middle' >"+ cart[product].quantity+"</td>";
+		html += "<td style='text-align: right; padding-right: 20px; width: 10%; vertical-align: middle'>"+ cart[product].price+"</td>";
+		html += "<td style='width: 10%; text-align: center; vertical-align: middle' >"+ cart[product].category+"</td>";
+		html += "<td style='text-align: right; padding-right: 20px; width: 5%; vertical-align: middle'><span id='total-amount'> "+productTotal(product)+"</span></td>";
+        html += "<td style='width: 20%; vertical-align: middle' ><button class='btn remove-from-cart' data-id='"+product+"'><i class='fa fa-trash'></i></button></td>"
 		html += "<br/>";
 		html += "</tr>";
 	}
-    html += "<tr><td colspan='5'></td><td> <b>Grand Total:</b> <span id='total-amount'> "+calculate_total()+"</span></td></tr>"
-
+	html += "<tr>";
+    html += "<td colspan='5'></td> <td style='text-align: center; padding-right: 0px; padding-left: 0px'> <b style='text-align: right; padding: 0px'>Cart Total:</b></td>"
+    html += "<td style='text-align: right; text:bold; padding-right: 20px'; width: 5%><span id='total-amount' ><b> "+calculate_total()+" </b></span></td>"
+    html += "</tr>";
 
 	$('#display-cart').html(html)
 
@@ -47,13 +49,13 @@ $( document ).ready(function() {
         for (item in cart){
             sum += cart[item].quantity * cart[item].price
         }
-        return sum;
+        return parseFloat(sum).toFixed(2);
     }
 
     function productTotal(item){
         var sum = 0;
             sum += cart[item].quantity * cart[item].price
-        return sum;
+        return parseFloat(sum).toFixed(2);
     }
 
     function cartTotal(obj) {

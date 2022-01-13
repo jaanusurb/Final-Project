@@ -12,7 +12,7 @@
         <tr>
             <th>PK</th>
             <th>Name</th>
-            <th>Price</th>
+            <th style="text-align: right; padding-right: 50px">Price</th>
             <th>Category</th>
             <th>Image</th>
             <th>Add to Cart</th>
@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ product.pk }}</td>
                 <td><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></td>
-                <td>{{ product.price }}</td>
+                <td style="text-align: right; padding-right: 50px">{{ product.price }} </td>
                 <td>{{ product.category.name }}</td>
                 <td><img src=" /media/{{ product.image }} " width="50" class="product"> <br/></td>
                 <td><button data-pk="{{ product.pk }}"
