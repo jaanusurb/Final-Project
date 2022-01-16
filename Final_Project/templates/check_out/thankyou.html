@@ -2,11 +2,16 @@
 {% load static %}
 
 {% block content %}
+
+<h1> THANK YOU FOR SHOPPING WITH US </h1>
+<p> Here is the list of items you have bought: </p>
+<hr>
 {% for item in items %}
- <p> {{item.product.name}} </p>
+  <p> <b>product:</b> {{item.product.name}} <b>quantity:</b> {{item.quantity}} </p>
+<hr>
 
-{% end for %}
+{% endfor %}
 
-Thank you
+Hope to see you soon!
 
 {% endblock %}

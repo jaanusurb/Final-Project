@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import Check_out
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView
 from .forms import CustomerForm, ShippingForm
-from .models import Order_new, OrderItem_new, Customer, ShippingAddress
+from .models import OrderNew, OrderItemNew, Customer, ShippingAddress
 # def cart_view(request)
 import json
 import json
@@ -33,8 +33,8 @@ def checkout_view(request):
     return render(request, 'check_out/check_out_list.html', context)
 
 def thankyou(request, id=None):
-    order = Order_new.objects.get(id=id)
-    items = order.OrderItem_new.product.name
+    order = OrderNew.objects.get(id=id)
+    items = order.orderitemnew_set.all()
     context = {'items': items, 'order': order}
     return render(request, 'check_out/thankyou.html', context)
 
@@ -49,7 +49,7 @@ def processOrder(request):
     # check if a user is authenticated else guest user
     if request.user.is_authenticated:
         customer, created = Customer.objects.get_or_create(user=request.user)
-        order, created = Order_new.objects.get_or_create(
+        order, created = OrderNew.objects.get_or_create(
             customer=customer, complete=False)
     else:
         # Anonomus user
@@ -58,11 +58,11 @@ def processOrder(request):
         customer, created = Customer.objects.get_or_create(name=name)
         customer.email = email
         customer.save()
-        order = Order_new.objects.create(customer=customer, complete=False)
+        order = OrderNew.objects.create(customer=customer, complete=False)
 
     for item, info in data['cart'].items():
         product = Product.objects.get(id=item)
-        orderItem = OrderItem_new.objects.create(
+        orderItem = OrderItemNew.objects.create(
             product=product,
             order=order,
             quantity=info['quantity']
