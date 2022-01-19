@@ -5,7 +5,7 @@
 
     <p><b> SHOPPING CART PAGE </b></p>
     user.pk: {{user.pk}}
-    {% if user.is_authenticated %}
+
 <!--    <p>Here are the details of your shopping cart via Database:</p><br/>
     <table class="table">
         <tr>
@@ -81,11 +81,12 @@
         <div id="caption"></div>
     </div>
 
-    {% else %}
+
+
     you need to be logged in to see the content <br/>
     <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login </a>
 
-    {% endif %}
+
 
 
 

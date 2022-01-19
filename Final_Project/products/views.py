@@ -19,7 +19,6 @@ class ProductListView(ListView):
     template_name = 'products/product_list.html'
     context_object_name = 'products'
 
-@login_required(login_url='accounts/login')
 def ShowAllProducts(request):
 
     category = request.GET.get('category')
@@ -91,7 +90,7 @@ class ProductDetailView(DetailView):
     template_name = 'products/product_detail.html'
     context_object_name = 'product'
 
-@login_required(login_url='showProducts')
+
 def productDetail(request, pk):
     eachProduct = Product.objects.get(id=pk)
 

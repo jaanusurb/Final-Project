@@ -7,7 +7,7 @@
 {% block content %}
 <th><img src=" /media/box.jfif " width="200"> <br/></th>
 <p><b>PRODUCT LIST PAGE</b></p><br/>
-    {% if user.is_authenticated %}
+
     <table class="table">
         <tr>
             <th>PK</th>
@@ -44,11 +44,6 @@
 
     <a class="btn btn-primary" href="{% url 'product_create' %}" role="button">Add product </a>
 
-    {% else %}
-    you need to be logged in to see the content <br/>
-    <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login </a>
-
-    {% endif %}
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
