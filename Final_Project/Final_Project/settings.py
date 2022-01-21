@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'shopping_cart',
     'check_out',
+    # From Just Django example
+    'accounts',
 
     # 'send_email.apps.SendEmailConfig',
     # 'pdf_convert.apps.PdfConvertConfig',

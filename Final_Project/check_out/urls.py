@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from .views import *
 
 urlpatterns = [
 
- path('list/', views.Check_outListView.as_view(), name='check_out_list'),
-
-
+ # path('list/', views.Check_outListView.as_view(), name='check_out_list'),
+ path('list/', views.checkout_view, name='check_out_list'),
+ path('confirm_order/', views.processOrder, name='confirm_order'),
+ path('process_order/', views.processOrder, name='process_order'),
+ path('thankyou/<int:id>', views.thankyou, name='thankyou'),
 ]

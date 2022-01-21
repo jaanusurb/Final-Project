@@ -5,7 +5,7 @@
 
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
  <title>{% block title %} Product Management onlineshopping {% endblock %}</title>
@@ -42,7 +42,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
              <li class="nav-item">
                 <a class="navbar-brand" href="/products/list/"><img src=" /media/cart.png " width="35"></a>
@@ -51,12 +51,12 @@
                 <a class="navbar-brand" href="{% url 'showProducts' %}">Home</a>
                 </li>
 
-<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--      </button>-->
-         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+<!--         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button>-->
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -67,7 +67,7 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'showProducts' %}">Show Products</a>
               </li>
           <li class="nav-item">
-            <a class="nav-link" id="projects" href="/shopping_cart/cart_add">Add Cart</a>
+            <a class="nav-link" id="projects" href="{% url 'shopping_cart:order_summary' %}">View Cart</a>
           </li>
 <!--          <li class="nav-item">-->
 <!--            <a class="nav-link" id="category_list" href="/products/category_list/">Category</a>-->
@@ -97,7 +97,7 @@
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item" >
-            <a class="nav-link" id="cart" href="/shopping_cart/list"><span id="cart_items">0</span> items in <img src="/media/cart.png" width="25" href="/shopping_cart/list"></a>
+            <a class="nav-link" id="cart" href="/shopping_cart/list"><span id="cart-items">0</span> items in <img src="/media/cart.png" width="25" href="/shopping_cart/list"></a>
           </li>
 
           <li class="nav-item">
@@ -147,8 +147,9 @@
        <br/>
    </div>
 
-<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.bundle.js' %}"></script>
 
 {% block script %}{% endblock %}
 

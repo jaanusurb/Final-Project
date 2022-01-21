@@ -7,12 +7,12 @@
 {% block content %}
 <th><img src=" /media/box.jfif " width="200"> <br/></th>
 <p><b>PRODUCT LIST PAGE</b></p><br/>
-    {% if user.is_authenticated %}
+
     <table class="table">
         <tr>
             <th>PK</th>
             <th>Name</th>
-            <th>Price</th>
+            <th style="text-align: right; padding-right: 50px">Price</th>
             <th>Category</th>
             <th>Image</th>
             <th>Add to Cart</th>
@@ -24,12 +24,19 @@
             <tr>
                 <td>{{ product.pk }}</td>
                 <td><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></td>
-                <td>{{ product.price }}</td>
+                <td style="text-align: right; padding-right: 50px">{{ product.price }} </td>
                 <td>{{ product.category.name }}</td>
                 <td><img src=" /media/{{ product.image }} " width="50" class="product"> <br/></td>
-                <td><button data-product="{{ product.pk }}" data-action="add" class="btn btn-outline-secondary add-to-cart">Add to cart</button></td>
-                <td><button class="btn btn-outline-primary add_to_cart" href="{% url 'shopping_cart_itemAdd' %}" role="button">Add to cart</button></td>
-                <th><a class="btn btn-primary" href="{% url 'shopping_cart_itemAdd' %}" role="button">Add to cart</a><br/></th>
+                <td><button data-pk="{{ product.pk }}"
+                            data-price="{{ product.price }}"
+                            data-name="{{ product.name }}"
+                            data-image="/media/{{product.image}}"
+                            data-category="{{ product.category.name }}"
+                            class="btn btn-outline-secondary add-to-cart">Add to cart
+                </button></td>
+
+                <td><button class="btn btn-outline-primary add_to_cart" href="{% url 'shopping_cart:shopping_cart_itemAdd' %}" role="button">Add to cart</button></td>
+                <th><a class="btn btn-primary" href="{% url 'shopping_cart:shopping_cart_itemAdd' %}" role="button">Add to cart</a><br/></th>
             </tr>
 
         {% endfor %}
@@ -37,11 +44,6 @@
 
     <a class="btn btn-primary" href="{% url 'product_create' %}" role="button">Add product </a>
 
-    {% else %}
-    you need to be logged in to see the content <br/>
-    <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login </a>
-
-    {% endif %}
 
 <!-- The Modal -->
 <div id="myModal" class="modal">

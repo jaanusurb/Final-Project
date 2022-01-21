@@ -1,39 +1,60 @@
 {% extends 'base.html' %}
-
-
-
+{% load static %}
 {% block content %}
-<th><img src=" /media/check_out.png " width="150"> <br/></th>
-    <p><b> CHECK OUT PAGE </b></p><br/>
-    <table class="table">
-        <tr>
-            <th>PK</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Total Cost</th>
-            <th>Deliveri Address</th>
-            <th>User Address</th>
-            <th>Order Items</th>
-            <th>Client</th>
-            <th>Status</th>
 
+<form id="checkout" method="post">
 
-        </tr>
-        {% for check_out in check_outs %}
+<div class="row">
+    <hr>
+    <h2><b> CHECKOUT PAGE </b></h2>
+    <hr>
 
-            <tr>
-                <td>{{ Check_out.pk }}</td>
-                <td>{{ Check_out.user_name }}</td>
-                <td>{{ Check_out.Date_of_submission }}</td>
-                <td>{{ Check_out.total_cost }}</td>
-                <td>{{ Check_out.delivery_address }}</td>
-                <td>{{ Check_out.user_address }}</td>
-                <td>{{ Check_out.order_items }}</td>
-                <td>{{ Check_out.client }}</td>
-                <td>{{ Check_out.status }}</td>
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+            {% if not user.is_authenticated %}
+            <div id="user-info">
+            <hr>
+            <h3>User Information:</h3>
+            <hr>
+                {% csrf_token %}
+                {{ customer_form.as_p }}
+            </div>
+            {% endif %}
+            <div id="shipping-info">
+                <hr>
+                <h3>Shipping Information:</h3>
+                <hr>
+                {% csrf_token %}
+                {{ shipping_form.as_p }}
+            </div>
 
-            </tr>
-        {% endfor %}
-    </table>
+            <hr>
+            <input id="confirm-order" class="btn btn-outline-success " type="submit" value="Confirm">
 
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-element">
+
+            <hr>
+            <h3>Order Summary:</h3>
+            <hr>
+
+            <table class="table" id="display-checkout">
+            </table>
+
+            <h5>You have <span id='cart-items'></span> items in your shopping cart</h5>
+            <h5>Total cost of the shopping cart:  <span id='cart-total'></span> €</h5>
+
+            <a  class="btn btn-outline-primary" href="/shopping_cart/list">&#x2190 Back to Cart</a>
+        </div>
+    </div>
+</div>
+</form>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
 {% endblock %}

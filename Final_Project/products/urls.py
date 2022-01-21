@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+from django.conf.urls import url
+from .views import ShowAllProducts
+# app_name = 'products'
+
 urlpatterns = [
  path('list/', views.ProductListView.as_view(), name='product_list'),
  path('create/', views.ProductCreateView.as_view(), name='product_create'),
@@ -32,4 +36,6 @@ urlpatterns = [
  path('search/', views.searchBar, name='search'),
  path('product/<int:pk>/add-comment', views.add_comment, name='add-comment'),
  path('product/<int:pk>/delete-comment', views.delete_comment, name='delete-comment'),
+
+ url(r'^', views.ShowAllProducts, name='product-list'),
 ]
